@@ -1,27 +1,30 @@
-// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Threading.Tasks;
-// using Microsoft.AspNetCore.Mvc;
-// using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
-// namespace API.Controllers
-// {
-//     [ApiController]
-//     [Route("[controller]")]
-//     public class VillainController : ControllerBase
-//     {
-//         private readonly ILogger<VillainController> _logger;
+namespace API.Controllers
+{
+    [ApiController]
+    [Route("[controller]")]
+    public class VillainController : ControllerBase
+    {
+        static List<Villain> villianList = new List<Villain>() {
+        
+        new Villain(1, "Mark Zukerburg", 5),
+        new Villain(2, "Mr James", 10),
+        new Villain(3, "NEIN", 9)
+        
+        };
 
-//         public VillainController(ILogger<VillainController> logger)
-//         {
-//             _logger = logger;
-//         }
 
-//         [HttpGet]
-//         public IEnumerable<VillainController> Get()
-//         {
-//           return DatabaseHandler.Villain();
-//         }
-//     }
-// }
+        [HttpGet]
+        public List<Villain> Get()
+        {
+          return villianList;
+        }
+
+    }
+}
