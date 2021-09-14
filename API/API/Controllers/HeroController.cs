@@ -21,7 +21,7 @@ namespace API.Controllers
 
 
         [HttpGet]
-        public List<Hero> Get()
+        public IEnumerable<Hero> Get()
         {
           return heroList;
         }
@@ -32,7 +32,16 @@ namespace API.Controllers
             heroList.Add(h);
             return h;
             
-
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public void Delete(int id) {
+            int Count = heroToDelete = heroList.Any(x => x.heroID == id).Count();
+            heroList.RemoveAll(x => x.id == id);
+            return count + "Heros deleted";
+        }
+
+        
     }
 }
