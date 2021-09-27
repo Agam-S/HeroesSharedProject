@@ -25,66 +25,36 @@ namespace API.Controllers
           return DatabaseHandler.GetHero();
         }
 
-        // [HttpPost]
-        // public IEnumerable<Employee> Post() { 
-        // // string Post([FromBody]Employee emp){
-        //     return DatabaseHandler.PostEmployee();
-        // }
+        [HttpGet]
+        [Route("/Hero/{HID}")]
+        public Hero GetHero(int HID)
+        {
+            return DatabaseHandler.GetIDHero(HID);
+        }
 
-        // [HttpPut]
-        // public string Put([FromBody]Employee emp) {
+        [HttpPost]
+        public void Post([FromBody]Hero h)
+        {
+            DatabaseHandler.PostHero(h);
+        }
 
-        // }
-    }
-}
-
-
-
-
-// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Threading.Tasks;
-// using Microsoft.AspNetCore.Mvc;
-// using Microsoft.Extensions.Logging;
-
-// namespace API.Controllers
-// {
-//     [ApiController]
-//     [Route("[controller]")]
-//     public class HeroController : ControllerBase
-//     {
-//         static List<Hero> heroList = new List<Hero>() {
-        
-//         new Hero(1, " Mr Swinburne", 0, 10, 2),
-//         new Hero(2, "Mrs Swinburne", 0, 5, 3),
-//         new Hero(3, "OOF", 5, 15, 3)
-        
-//         };
-
-
-//         [HttpGet]
-//         public IEnumerable<Hero> Get()
-//         {
-//           return heroList;
-//         }
-
-//         [HttpPost]
-//         public Hero Post([FromBody]Hero h){
-
-//             heroList.Add(h);
-//             return h;
+        [HttpPut]
+        public void Put([FromBody]Hero h)
+        {
+            DatabaseHandler.PutHero(h);
             
-//         }
-
-//         [HttpDelete]
-//         [Route("{id}")]
-//         public void Delete(int id) {
-//             int Count = heroToDelete = heroList.Any(x => x.heroID == id).Count();
-//             heroList.RemoveAll(x => x.id == id);
-//             return count + "Heros deleted";
-//         }
-
+        }
         
-//     }
-// }
+        [HttpDelete]
+        public void Delete([FromBody]int HID)
+        {
+            DatabaseHandler.DeleteHero(HID);
+            
+        }
+        
+    }
+
+
+
+    }
+
