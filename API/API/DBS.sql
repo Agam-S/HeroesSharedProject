@@ -38,9 +38,10 @@ PRIMARY KEY (HID)
 );
 
 CREATE TABLE VILLAIN (
-    VID INT,
+    VILLAINID INT,
     VNAME NVARCHAR(100),
-PRIMARY KEY (VID)
+    HITPOINTS INT,
+PRIMARY KEY (VILLAINID)
 );
 
 CREATE TABLE GAME (
@@ -63,13 +64,20 @@ INSERT INTO HERO(HID, HNAME, MINVALUE, MAXVALUE, USES) VALUES
 (1, 'Mr swinburne', 0, 10, 2),
 (2, 'Ms Swinburne', 0, 8, 2)
 
-INSERT INTO VILLAIN(vid, vname) VALUES
-(1, 'badPerson')
+
 
 Select * from hero
 
 
--- ===============STORED PROCEDURES===============================================
+INSERT INTO VILLAIN(villainid, vname, HITPOINTS) VALUES 
+(1, 'badPerson', 10),
+(2, 'ANOTHER BAD PERSON', 5),
+(3, 'dion', 2)
+
+
+Select * from VILLAIN
+
+-- ==============HERO=STORED PROCEDURES===============================================
 
 -- post_HERO
 
@@ -131,6 +139,71 @@ BEGIN
     BEGIN TRY
     DELETE FROM HERO
        WHERE HID = @pHID
+    END TRY
+    BEGIN CATCH
+    END CATCH
+END
+GO
+
+
+-- ==============VILLAIN=STORED PROCEDURES===============================================
+
+-- POST_VILLAIN
+
+IF OBJECT_ID('POST_VILLAIN') IS NOT NULL
+    DROP PROCEDURE VILLAIN;
+
+GO
+CREATE PROCEDURE POST_VILLAIN
+    @pVillainID INT,
+    @pVName NVARCHAR(100),
+    @pHitPoints INT
+AS
+BEGIN
+    BEGIN TRY
+        INSERT INTO VILLAIN
+        (VillainID, VNAME, HITPOINTS)
+    VALUES
+        (@pVillainID, @pVName, @pHitPoints)
+    END TRY
+    BEGIN CATCH
+    END CATCH
+END
+GO
+
+-- UPDATE HERO
+
+IF OBJECT_ID('PutVillain') IS NOT NULL
+    DROP PROCEDURE PutVillain;
+
+GO
+CREATE PROCEDURE PutVillain
+     @pVillainID INT,
+    @pVName NVARCHAR(100),
+    @pHitPoints INT
+AS
+BEGIN
+    BEGIN TRY
+        UPDATE VILLAIN SET VNAME = @pVName, HITPOINTS = @pHitPoints
+            WHERE VillainID = @pVillainID
+    END TRY
+    BEGIN CATCH
+    END CATCH
+END
+GO
+
+-- DELETE HERO
+IF OBJECT_ID('DELETE_Villain') IS NOT NULL
+    DROP PROCEDURE DELETE_Villain;
+
+GO
+CREATE PROCEDURE DELETE_Villain
+    @pVillainID INT
+AS
+BEGIN
+    BEGIN TRY
+    DELETE FROM VILLAIN
+       WHERE VillainID = @pVillainID
     END TRY
     BEGIN CATCH
     END CATCH
