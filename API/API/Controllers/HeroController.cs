@@ -22,33 +22,33 @@ namespace API.Controllers
         [HttpGet]
         public IEnumerable<Hero> Get()
         {
-          return DatabaseHandler.GetHero();
+          return HeroDatabaseHandler.GetHero();
         }
 
         [HttpGet]
         [Route("/Hero/{HID}")]
         public Hero GetHero(int HID)
         {
-            return DatabaseHandler.GetIDHero(HID);
+            return HeroDatabaseHandler.GetIDHero(HID);
         }
 
         [HttpPost]
         public void Post([FromBody]Hero h)
         {
-            DatabaseHandler.PostHero(h);
+            HeroDatabaseHandler.PostHero(h);
         }
 
         [HttpPut]
         public void Put([FromBody]Hero h)
         {
-            DatabaseHandler.PutHero(h);
+            HeroDatabaseHandler.PutHero(h);
             
         }
         
         [HttpDelete]
         public void Delete([FromBody]int HID)
         {
-            DatabaseHandler.DeleteHero(HID);
+            HeroDatabaseHandler.DeleteHero(HID);
             
         }
         

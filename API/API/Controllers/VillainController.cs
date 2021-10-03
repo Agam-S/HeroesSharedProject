@@ -22,33 +22,33 @@ namespace API.Controllers
         [HttpGet]
         public IEnumerable<Villain> GetVillains()
         {
-          return DatabaseHandler.GetVillains();
+          return VillainDatabaseHandler.GetVillains();
         }
 
         [HttpGet]
         [Route("/Villain/{VillainID}")]
         public Villain GetIDVillains(int VillainID)
         {
-            return DatabaseHandler.GetIDVillain(VillainID);
+            return VillainDatabaseHandler.GetIDVillain(VillainID);
         }
 
         [HttpPost]
         public void Post([FromBody]Villain v)
         {
-            DatabaseHandler.PostVillain(v);
+            VillainDatabaseHandler.PostVillain(v);
         }
 
         [HttpPut]
         public void Put([FromBody]Villain v)
         {
-            DatabaseHandler.PutVillain(v);
+            VillainDatabaseHandler.PutVillain(v);
             
         }
         
         [HttpDelete]
         public void Delete([FromBody]int VillainID)
         {
-            DatabaseHandler.DeleteVillain(VillainID);
+            VillainDatabaseHandler.DeleteVillain(VillainID);
             
         }
         
