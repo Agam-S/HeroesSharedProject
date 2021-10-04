@@ -40,5 +40,40 @@ namespace API
         
         }
       }
+
+     public static Game GetIDGame(int GameID)
+        {
+            Game g = new Game();
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                try {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand(string.Format("SELECT * FROM GAME WHERE GAMEID = \'{0}\'", GameID), conn))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read()) 
+                        {
+                            g.GAMEID = reader.GetInt32(0);
+                            g.GAMETIME = reader.GetDateTime(1);
+                        
+                        }
+                    }
+                }
+                }
+            catch (Exception e)
+            {
+                throw new Exception("Error in GetAllDemoFromDB() " + e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return g;
+            }
+        }
+
+
+
     }
 }

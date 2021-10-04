@@ -24,5 +24,12 @@ namespace API.Controllers
         {
           return GameDatabaseHandler.GetGames();
         }
+
+        [HttpGet]
+        [Route("/Game/{GameID}")]
+        public Game GetIDGame(int GameID) {
+            return GameDatabaseHandler.GetIDGame(GameID);
+        }
+
     }
 }
