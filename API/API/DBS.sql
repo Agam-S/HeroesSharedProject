@@ -15,6 +15,7 @@ FOREIGN KEY (HID) REFERENCES HERO (HID)
 FOREIGN KEY (VID) REFERENCES VILLAIN (VID)
 
 */
+-- =================================== DDL ===================================
 
 IF OBJECT_ID('HERO') IS NOT NULL
 DROP TABLE HERO;
@@ -46,19 +47,23 @@ PRIMARY KEY (VILLAINID)
 
 CREATE TABLE GAME (
     GAMEID INT,
+    GAMETIME DATE,
 PRIMARY KEY (GAMEID)
 );
 
 CREATE TABLE ACTIONS (
     HID INT,
-    VID INT,
+    VILLAINID INT,
     GAMEID INT,
     TURNCOUNTER INT,
-PRIMARY KEY(HID, VID, GAMEID, TURNCOUNTER),
-FOREIGN KEY (GAMEID) REFERENCES GAME,
+    HITPOINTS INT,
+PRIMARY KEY(HID, VILLAINID, GAMEID, TURNCOUNTER),
+FOREIGN KEY (GAMEID) REFERENCES GAME (GAMEID),
 FOREIGN KEY (HID) REFERENCES HERO (HID),
-FOREIGN KEY (VID) REFERENCES VILLAIN (VID)
+FOREIGN KEY (VILLAINID) REFERENCES VILLAIN (VILLAINID)
 );
+
+-- ======================= INSERTING DATA /DML ===========================
 
 INSERT INTO HERO(HID, HNAME, MINVALUE, MAXVALUE, USES) VALUES
 (1, 'Mr swinburne', 0, 10, 2),
@@ -73,9 +78,27 @@ INSERT INTO VILLAIN(villainid, vname, HITPOINTS) VALUES
 (1, 'badPerson', 10),
 (2, 'ANOTHER BAD PERSON', 5),
 (3, 'dion', 2)
+(4, 'BOY', 10)
 
+INSERT INTO GAME (GAMEID, GAMETIME) VALUES
+(1, '2021-10-04'),
+(2, '2021-10-04'),
+(3, '2021-10-04'),
+(4, '2021-10-04');
+
+INSERT INTO ACTIONS(Hid, VILLAINID, GAMEID, turncounter, HITPOINTS) VALUES
+(1, 1, 1, 1, 3),
+(2, 2, 2, 2, 2),
+(3, 3, 3, 3, 5),
+(4, 4, 1, 4, 2)
+
+-- ============================================
 
 Select * from VILLAIN
+
+select * from game 
+
+select * from actions
 
 -- ==============HERO=STORED PROCEDURES===============================================
 
