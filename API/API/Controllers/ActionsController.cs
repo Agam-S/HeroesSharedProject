@@ -30,5 +30,11 @@ namespace API.Controllers
         public Actions GetIDGame(int HID, int VillainID, int GameID, int TURNCOUNTER) {
             return ActionsDatabaseHandler.GetIDActions(HID, VillainID, GameID, TURNCOUNTER);
         }
+
+        [HttpPost]
+        public void Post([FromBody]Actions a)
+        {
+            ActionsDatabaseHandler.PostActions(a);
+        }
     }
 }

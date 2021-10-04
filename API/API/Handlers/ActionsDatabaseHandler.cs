@@ -75,5 +75,35 @@ namespace API
             return a;
             }
         }
+
+        public static string PostActions(Actions a)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                conn.Open();
+
+                using (SqlCommand command = new SqlCommand("POST_ACTIONS", conn))
+                {
+               command.CommandType = System.Data.CommandType.StoredProcedure;
+               command.Parameters.AddWithValue("@pHID", a.HID);
+               command.Parameters.AddWithValue("@pVillainID", a.VILLAINID);
+               command.Parameters.AddWithValue("@pGAMEID", a.GAMEID);
+               command.Parameters.AddWithValue("@pTURNCOUNTER", a.TURNCOUNTER);
+               command.Parameters.AddWithValue("@pHITPOINTS", a.HITPOINTS);
+               int results = command.ExecuteNonQuery();
+                    conn.Close();
+
+                    if (results >= 1)
+                    {
+                        return "SUCCESSSS)";
+                    }
+                    else
+                    {
+                        return "ACTIONS POST FAILED!!!";
+                    }
+                }
+            }
+            
+        }
     }
 }

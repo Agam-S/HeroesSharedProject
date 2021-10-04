@@ -31,5 +31,11 @@ namespace API.Controllers
             return GameDatabaseHandler.GetIDGame(GameID);
         }
 
+        [HttpPost]
+        public void Post([FromBody]Game g)
+        {
+            GameDatabaseHandler.PostGame(g);
+        }
+
     }
 }

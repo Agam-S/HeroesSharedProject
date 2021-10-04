@@ -73,6 +73,34 @@ namespace API
             }
         }
 
+        
+        public static string PostGame(Game g)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                conn.Open();
+
+                using (SqlCommand command = new SqlCommand("POST_GAME", conn))
+                {
+               command.CommandType = System.Data.CommandType.StoredProcedure;
+               command.Parameters.AddWithValue("@pGAMEID", g.GAMEID);
+               command.Parameters.AddWithValue("@pGAMETIME", g.GAMETIME);
+
+               int results = command.ExecuteNonQuery();
+                    conn.Close();
+
+                    if (results >= 1)
+                    {
+                        return "SUCCESSSS)";
+                    }
+                    else
+                    {
+                        return "ACTIONS POST FAILED!!!";
+                    }
+                }
+            }
+            
+        }
 
 
     }
