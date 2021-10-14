@@ -7,6 +7,8 @@ namespace API {
     public int GAMEID { get; set; }
     public DateTime GAMETIME { get; set; }
 
+    public string WHOWON { get; set; }
+
 
     }
 

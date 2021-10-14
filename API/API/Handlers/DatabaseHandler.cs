@@ -13,10 +13,12 @@ namespace API
     public static string GetConnectionString() {
     try{
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-        builder.DataSource = "prg-database.c7ksa2nabbvq.us-east-1.rds.amazonaws.com";
-        builder.UserID = "admin";
-        builder.Password = "12345678";
-        builder.InitialCatalog = "DemoDataDBS";
+        // builder.DataSource = "prg-database.c7ksa2nabbvq.us-east-1.rds.amazonaws.com";
+        // builder.DataSource = "workstation id=swinburne-swd.mssql.somee.com;packet size=4096;user id=agam_swinburne_SQLLogin_1;pwd=1m9leta453;data source=swinburne-swd.mssql.somee.com;persist security info=False;initial catalog=swinburne-swd";
+        builder.DataSource = "swinburne-swd.mssql.somee.com";
+        builder.UserID = "agam_swinburne_SQLLogin_1";
+        builder.Password = "1m9leta453";
+        builder.InitialCatalog = "swinburne-swd";
         return builder.ConnectionString;
     }   
      catch (Exception e){

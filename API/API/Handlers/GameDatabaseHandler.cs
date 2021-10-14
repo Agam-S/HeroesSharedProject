@@ -24,7 +24,8 @@ namespace API
                    while (reader.Read())
                    { 
                          g.Add(new Game(){GAMEID = reader.GetInt32(0),
-                        GAMETIME = reader.GetDateTime(1)});
+                        GAMETIME = reader.GetDateTime(1),
+                        WHOWON = reader.GetString(2)});
                   }
              }
         }
@@ -56,6 +57,7 @@ namespace API
                         {
                             g.GAMEID = reader.GetInt32(0);
                             g.GAMETIME = reader.GetDateTime(1);
+                            g.WHOWON = reader.GetString(2);
                         
                         }
                     }
@@ -85,6 +87,7 @@ namespace API
                command.CommandType = System.Data.CommandType.StoredProcedure;
                command.Parameters.AddWithValue("@pGAMEID", g.GAMEID);
                command.Parameters.AddWithValue("@pGAMETIME", g.GAMETIME);
+               command.Parameters.AddWithValue("@pWHOWON", g.WHOWON);
 
                int results = command.ExecuteNonQuery();
                     conn.Close();

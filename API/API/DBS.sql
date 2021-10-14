@@ -17,6 +17,7 @@ FOREIGN KEY (VID) REFERENCES VILLAIN (VID)
 */
 -- =================================== DDL ===================================
 
+
 IF OBJECT_ID('HERO') IS NOT NULL
 DROP TABLE HERO;
 
@@ -48,6 +49,7 @@ PRIMARY KEY (VILLAINID)
 CREATE TABLE GAME (
     GAMEID INT,
     GAMETIME DATE,
+    WHOWON NVARCHAR(100),
 PRIMARY KEY (GAMEID)
 );
 
@@ -67,8 +69,9 @@ FOREIGN KEY (VILLAINID) REFERENCES VILLAIN (VILLAINID)
 
 INSERT INTO HERO(HID, HNAME, MINVALUE, MAXVALUE, USES) VALUES
 (1, 'Mr swinburne', 0, 10, 2),
-(2, 'Ms Swinburne', 0, 8, 2)
-
+(2, 'Ms Swinburne', 0, 8, 2),
+(3, 'yey yey', 0, 10, 2),
+(4, 'eye eye', 2, 5, 2)
 
 
 Select * from hero
@@ -77,14 +80,14 @@ Select * from hero
 INSERT INTO VILLAIN(villainid, vname, HITPOINTS) VALUES 
 (1, 'badPerson', 10),
 (2, 'ANOTHER BAD PERSON', 5),
-(3, 'dion', 2)
+(3, 'dion', 2),
 (4, 'BOY', 10)
 
-INSERT INTO GAME (GAMEID, GAMETIME) VALUES
-(1, '2021-10-04'),
-(2, '2021-10-04'),
-(3, '2021-10-04'),
-(4, '2021-10-04');
+INSERT INTO GAME (GAMEID, GAMETIME, WHOWON) VALUES
+(1, '2021-10-04', 'Villains Won'),
+(2, '2021-10-04', 'Heroes Won'),
+(3, '2021-10-04', 'Villains Won'),
+(4, '2021-10-04', 'Villains Won');
 
 INSERT INTO ACTIONS(Hid, VILLAINID, GAMEID, turncounter, HITPOINTS) VALUES
 (1, 1, 1, 1, 3),
@@ -93,6 +96,7 @@ INSERT INTO ACTIONS(Hid, VILLAINID, GAMEID, turncounter, HITPOINTS) VALUES
 (4, 4, 1, 4, 2)
 
 -- ============================================
+select * from hero
 
 Select * from VILLAIN
 
@@ -241,14 +245,15 @@ IF OBJECT_ID('POST_GAME') IS NOT NULL
 GO
 CREATE PROCEDURE POST_GAME
     @pGameID INT,
-    @pGAMETIME DATE
+    @pGAMETIME DATE,
+    @pWHOWON NVARCHAR(100)
 AS
 BEGIN
     BEGIN TRY
         INSERT INTO GAME
-        (GAMEID, GAMETIME)
+        (GAMEID, GAMETIME, WHOWON)
     VALUES
-        (@pGameID, @pGAMETIME)
+        (@pGameID, @pGAMETIME, @pWHOWON)
     END TRY
     BEGIN CATCH
     END CATCH
