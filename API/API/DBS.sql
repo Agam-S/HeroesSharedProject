@@ -69,19 +69,18 @@ FOREIGN KEY (VILLAINID) REFERENCES VILLAIN (VILLAINID)
 
 INSERT INTO HERO(HID, HNAME, MINVALUE, MAXVALUE, USES) VALUES
 (1, 'Mr swinburne', 0, 10, 2),
-(2, 'Ms Swinburne', 0, 8, 2),
-(3, 'yey yey', 0, 10, 2),
-(4, 'eye eye', 2, 5, 2)
+(2, 'Ms Swinburne', 0, 8, 2)
 
 
 Select * from hero
 
 
 INSERT INTO VILLAIN(villainid, vname, HITPOINTS) VALUES 
-(1, 'badPerson', 10),
-(2, 'ANOTHER BAD PERSON', 5),
-(3, 'dion', 2),
-(4, 'BOY', 10)
+(1, 'BadBoy', 3),
+(2, 'Dion', 1),
+(3, 'Anh', 10),
+(4, 'James', 5)
+
 
 INSERT INTO GAME (GAMEID, GAMETIME, WHOWON) VALUES
 (1, '2021-10-04', 'Villains Won'),
@@ -91,14 +90,13 @@ INSERT INTO GAME (GAMEID, GAMETIME, WHOWON) VALUES
 
 INSERT INTO ACTIONS(Hid, VILLAINID, GAMEID, turncounter, HITPOINTS) VALUES
 (1, 1, 1, 1, 3),
-(2, 2, 2, 2, 2),
-(3, 3, 3, 3, 5),
-(4, 4, 1, 4, 2)
+(2, 2, 2, 2, 2)
 
 -- ============================================
 select * from hero
 
 Select * from VILLAIN
+delete  from Villain
 
 select * from game 
 
