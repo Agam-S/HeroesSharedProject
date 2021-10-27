@@ -96,7 +96,7 @@ INSERT INTO ACTIONS(Hid, VILLAINID, GAMEID, turncounter, HITPOINTS) VALUES
 select * from hero
 
 Select * from VILLAIN
-delete  from Villain
+-- delete  from Villain
 
 select * from game 
 

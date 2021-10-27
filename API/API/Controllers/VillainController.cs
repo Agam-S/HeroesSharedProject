@@ -1,11 +1,18 @@
+// using System;
+// using System.Collections;
+// using System.Collections.Generic;
+// using System.Linq;
+// using System.Threading.Tasks;
+// using Microsoft.AspNetCore.Cors;
+// using Microsoft.AspNetCore.Mvc;
+// using Microsoft.Extensions.Logging;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
 {
@@ -46,9 +53,10 @@ namespace API.Controllers
             
         }
         [EnableCors("MyPolicy")]
-        [HttpDelete]
-        public void Delete([FromBody]int VillainID)
+        [HttpDelete("{VillainID}")]
+        public void Delete(int VillainID)
         {
+            System.Console.WriteLine("Deleting Villain with ID: " + VillainID);
             VillainDatabaseHandler.DeleteVillain(VillainID);
             
         }
