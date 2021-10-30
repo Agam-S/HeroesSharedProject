@@ -23,9 +23,9 @@ namespace API
                {
                    while (reader.Read())
                    { 
-                         g.Add(new Game(){GAMEID = reader.GetInt32(0),
-                        GAMETIME = reader.GetDateTime(1),
-                        WHOWON = reader.GetString(2)});
+                         g.Add(new Game(){
+                        GAMETIME = reader.GetDateTime(0),
+                        WHOWON = reader.GetString(1)});
                   }
              }
         }
@@ -55,9 +55,9 @@ namespace API
                     {
                         while (reader.Read()) 
                         {
-                            g.GAMEID = reader.GetInt32(0);
-                            g.GAMETIME = reader.GetDateTime(1);
-                            g.WHOWON = reader.GetString(2);
+                         
+                            g.GAMETIME = reader.GetDateTime(0);
+                            g.WHOWON = reader.GetString(1);
                         
                         }
                     }
@@ -76,7 +76,7 @@ namespace API
         }
 
         
-        public static string PostGame(Game g)
+        public static string PostGame(Game game)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
@@ -85,9 +85,8 @@ namespace API
                 using (SqlCommand command = new SqlCommand("POST_GAME", conn))
                 {
                command.CommandType = System.Data.CommandType.StoredProcedure;
-               command.Parameters.AddWithValue("@pGAMEID", g.GAMEID);
-               command.Parameters.AddWithValue("@pGAMETIME", g.GAMETIME);
-               command.Parameters.AddWithValue("@pWHOWON", g.WHOWON);
+               command.Parameters.AddWithValue("@pGAMETIME", game.GAMETIME);
+               command.Parameters.AddWithValue("@pWHOWON", game.WHOWON);
 
                int results = command.ExecuteNonQuery();
                     conn.Close();

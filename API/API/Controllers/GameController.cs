@@ -33,9 +33,9 @@ namespace API.Controllers
         }
         [EnableCors("MyPolicy")]
         [HttpPost]
-        public void Post([FromBody]Game g)
+        public void Post([FromBody]Game game)
         {
-            GameDatabaseHandler.PostGame(g);
+            GameDatabaseHandler.PostGame(game);
         }
 
     }

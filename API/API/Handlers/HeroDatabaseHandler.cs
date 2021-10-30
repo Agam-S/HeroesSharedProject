@@ -139,7 +139,7 @@ namespace API
             
         }
 
-          public static string DeleteHero(int HID) 
+          public static string DeleteHero(int hid) 
           {
           using (SqlConnection conn = new SqlConnection(GetConnectionString()))
                {
@@ -147,7 +147,7 @@ namespace API
                using (SqlCommand command = new SqlCommand("DELETE_HERO", conn))
                {
                command.CommandType = System.Data.CommandType.StoredProcedure;
-               command.Parameters.AddWithValue("@pHID", HID);   
+               command.Parameters.AddWithValue("@pHID", hid);   
                int results = command.ExecuteNonQuery();
                conn.Close();
                

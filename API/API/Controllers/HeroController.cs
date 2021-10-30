@@ -1,21 +1,12 @@
-// using System;
-// using System.Collections;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Threading.Tasks;
-// using Microsoft.AspNetCore.Cors;
-// using Microsoft.AspNetCore.Mvc;
-// // using Microsoft.AspNet.WebApi.Cors;
-// // using Microsoft.AspNet.Cors;
-// using Microsoft.Extensions.Logging;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Cors;
+
 namespace API.Controllers
 
 {
@@ -56,10 +47,11 @@ namespace API.Controllers
             
         }
         [EnableCors("MyPolicy")]
-        [HttpDelete("{HID}")]
-        public void Delete(int HID)
+        [HttpDelete("{hid}")]
+        public void Delete(int hid)
         {
-            HeroDatabaseHandler.DeleteHero(HID);
+            System.Console.WriteLine("Deleting Hero with ID: " + hid);
+            HeroDatabaseHandler.DeleteHero(hid);
             
         }
         
