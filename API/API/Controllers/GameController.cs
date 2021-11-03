@@ -35,6 +35,8 @@ namespace API.Controllers
         [HttpPost]
         public void Post([FromBody]Game game)
         {
+            
+            System.Console.WriteLine(game.GAMETIME);
             GameDatabaseHandler.PostGame(game);
         }
 

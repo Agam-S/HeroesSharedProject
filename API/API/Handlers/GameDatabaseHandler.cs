@@ -85,8 +85,11 @@ namespace API
                 using (SqlCommand command = new SqlCommand("POST_GAME", conn))
                 {
                command.CommandType = System.Data.CommandType.StoredProcedure;
-               command.Parameters.AddWithValue("@pGAMETIME", game.GAMETIME);
+               DateTime mydate = DateTime.Now;
+                string GAMETIME = game.GAMETIME.ToString("yyyy-MM-dd HH:mm:ss.fff");
+               command.Parameters.AddWithValue("@pGAMETIME", GAMETIME);
                command.Parameters.AddWithValue("@pWHOWON", game.WHOWON);
+               System.Console.WriteLine(mydate);
 
                int results = command.ExecuteNonQuery();
                     conn.Close();
